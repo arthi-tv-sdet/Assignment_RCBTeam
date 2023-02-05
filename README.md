@@ -23,7 +23,7 @@
     </tr>
     <tr>
       <td><b>TestNG</b></td>
-      <td><b>7.4.0</b></td>
+      <td><b>6.14.3</b></td>
       <td><b>Test Runner to execute suite</b></td>
     </tr>
     <tr>
