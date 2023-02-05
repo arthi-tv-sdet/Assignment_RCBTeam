@@ -20,7 +20,7 @@ public class ReadTestData {
 	public static void read_Json_File(String fileName) {
 		try {
 			JSONParser jsonparser = new JSONParser();
-			FileReader reader = new FileReader("./src/main/resources/testdata/" + fileName + ".json");
+			FileReader reader = new FileReader("./src/test/resources/testdata/" + fileName + ".json");
 			Object obj = jsonparser.parse(reader);
 			rcb_team_Obj = (JSONObject) obj;
 		}catch(Exception e) {

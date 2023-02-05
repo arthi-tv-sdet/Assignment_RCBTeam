@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.rcbteam.utility.ReadTestData;
 
-public class ValidateRCBPlayers {
+public class ValidateWicketKeeper {
 	/**
 	 * Execute before @Test,
 	 * Read JSON File and Fetch JSON Array data one time
@@ -20,14 +20,7 @@ public class ValidateRCBPlayers {
 		System.out.println("Json file read is completed");
 	}
 
-	/**
-	 *Verify Overseas Players Count 
-	 */
-	@Test
-	public void test1_verifyForeignPlayersCount() {
-		Assert.assertTrue(ReadTestData.overseas_Player_count==4);
-		System.out.println("Overseas players count verification is completed");
-	}
+	
 
 	/**
 	 *Verify Wicket-Keeper Count 
