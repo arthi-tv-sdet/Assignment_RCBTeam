@@ -6,11 +6,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class ReadTestData {
+import com.rcbteam.utils.Reporter;
+
+public class ReadTestData extends Reporter{
 	public static JSONObject rcb_team_Obj;
 	public static int overseas_Player_count=0;
 	public static int wicketKeeper_count=0;
-
+	
 	/**
 	 * Read the JSON file,parse and get JSONObject 
 	 * 

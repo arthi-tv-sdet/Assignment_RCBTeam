@@ -1,0 +1,92 @@
+package com.rcbteam.utils;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.ChartLocation;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+public class Reporter {
+	private static ExtentReports extent;
+	public static ExtentTest  parent;
+	private static final ThreadLocal<String> testName = new ThreadLocal<String>();
+	/**
+	 * Method to create Extent Report
+	 */
+	private String fileName = "result.html";
+	private String pattern = "dd-MMM-yyyy HH-mm-ss";
+
+	public String testcaseName, testDescription, category;
+	public static String folderName = "";
+
+	@BeforeSuite(alwaysRun = true)
+	public synchronized void startReport() {
+		
+		String date = new SimpleDateFormat(pattern).format(new Date());
+		folderName = "reports/" + date;
+
+		File folder = new File("./" + folderName);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("./" + folderName + "/" + fileName);
+		htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
+		htmlReporter.config().setDocumentTitle("Team_RCB_Test");
+		htmlReporter.config().setEncoding("utf-8");
+		htmlReporter.config().setReportName("RCB_JSON_Validation");
+		htmlReporter.setAppendExisting(true);
+		htmlReporter.config().setChartVisibilityOnOpen(!true);
+		htmlReporter.config().setTheme(Theme.STANDARD);
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
+	}
+
+	/**
+	 * Create node for each Test
+	 * @param testCaseName - Test case name which will be same as node name
+	 * @param testDescription- Test case description
+	 * @param category- Test case category - Positive 
+	 * @author authors- who created test test case
+	 */
+	@BeforeClass(alwaysRun = true)
+	public synchronized void startTestCase() {
+		parent = extent.createTest(testcaseName, testDescription);
+		parent.assignCategory(category);
+		testName.set(testcaseName);
+	}
+
+
+	/**
+	 * Method to log the status
+	 * @param desc - description of the report step
+	 * @param status - log status of each step
+	 */
+	// To report steps 
+
+	public static void reportLog(String desc, String status) {
+
+		if(status.equalsIgnoreCase("PASS")) {
+			parent.pass(desc);		
+		}else if(status.equalsIgnoreCase("FAIL")) {
+			parent.fail(desc);
+			throw new RuntimeException();
+		}else if(status.equalsIgnoreCase("WARNING")) {
+			parent.warning(desc);		
+		}else {
+			parent.info(desc);
+		}	
+	}
+
+	@AfterSuite(alwaysRun = true)
+	public synchronized void endResult() {
+		extent.flush();
+	}
+}
