@@ -2,8 +2,8 @@
 
 <h2>Problem to Solve:</h2>
 <ul>
-<li>1. Write test to validate that the team has only 4 foreign players</li>
-<li>2. Write test to validate that their is atleast 1 wicket keeper </li>
+<li> Write test to validate that the team has only 4 foreign players</li>
+<li> Write test to validate that their is atleast 1 wicket keeper </li>
  
 ## Software Dependencies
 
