@@ -58,7 +58,7 @@
 
 
 <h2>Command Line Execution</h2>
-<li>Navigate to project directory(./TestVagrant_Assessment) and execute "mvn clean test"</li>
+<li>Navigate to project directory(./RCB) and execute "mvn clean test"</li>
 <li>Note: make sure Java and maven are installed in the machine</li>
 </ul> 
 
